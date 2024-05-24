@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainwise</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f0f0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .navbar a.active {
+        background-color: #666;
+    }
+
+    .navbar .logo {
+        font-family: cursive;
+        font-size: 30px;
+        background: linear-gradient(to right, #f32170, #ff6b08);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .content {
+        margin-top: 80px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #753983;
+        text-shadow: 2px 2px 2px rgba(190, 155, 185, 0.7);
+        margin-bottom: 20px;
+    }
+
+    .welcome-message {
+        font-size: 1.2em;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .login-links {
+        margin-top: 20px;
+    }
+
+    .login-links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+    .login-links a:hover {
+        text-decoration: underline;
+    }
+
+    .description {
+        font-size: 1em;
+        color: #555;
+        margin: 40px 0;
+    }
+
+    .description ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .description li {
+        margin: 10px 0;
+    }
+
+    .button {
+        background-color: #b079b2;
+        padding: 10px 32px;
+        font-size: 1em;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #8e5e90;
+    }
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 20px;
+        background-color: #333;
+        margin: 20px 0;
+        border-radius: 10px;
+    }
+
+    .scroll-container img {
+        height: 300px;
+        width: 300px;
+        margin-right: 15px;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .scroll-container img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/about" class="logo">trainwise</a>
+    <div class="navbarright">
+        <a href="/" class="active">Home</a>
+        <a href="/about">About Us</a>
+        {% if session['email_id'] %}
+            <a href="{{ url_for('workout_history') }}">Workout History</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="content">
+    <h1>Welcome to Trainwise</h1>
+    {% if session['email_id'] %}
+        <p class="welcome-message">Hello, {{ session['email_id'] }}!</p>
+        <a href="{{ url_for('logout') }}" class="button">Logout</a>
+    {% else %}
+        <div class="login-links">
+            <a href="{{ url_for('login') }}">Login</a> |
+            <a href="{{ url_for('signup') }}">Signup</a>
+        </div>
+    {% endif %}
+    <div class="description">
+
+    </div>
+</div>
+
+<div class="scroll-container">
+    <a href="lunges">
+        <img src="static/lounges_exerc.jpg" alt="lounges exercise">
+    </a>
+    <a href="biceps">
+        <img src="static/biceps_exerc.jpg" alt="biceps exercise">
+    </a>
+    <a href="shoulder">
+        <img src="static/shoulder_exerc.jpg" alt="shoulder exercise">
+    </a>
+    <a href="crunches">
+        <img src="static/crunches.jpg" alt="crunches exercise">
+    </a>
+</div>
+
+<script>
+    function activate() {
+        fetch('/call-my-function')
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+    }
+
+    document.getElementById('button').addEventListener('click', activate);
+</script>
+
+</body>
+</html>

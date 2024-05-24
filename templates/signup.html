@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            display: block;
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-link:hover {
+            color: #0056b3;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            float: right;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #666;
+        }
+
+        .navbar .logo {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-family: cursive;
+            font-size: 30px;
+            background: linear-gradient(to right, #f32170, #ff6b08);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .navbarright {
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .signup-container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            input, button {
+                font-size: 14px;
+            }
+
+            .navbar a, .navbar .logo {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/about" class="logo">trainwise</a>
+        <div class="navbarright">
+            <a href="/" class="active">Home</a>
+            <a href="/about">About Us</a>
+            <a href="{{ url_for('signup') }}">Signup</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+    <div class="signup-container">
+        <h1>Signup</h1>
+        <form method="POST">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+            <label for="email_id">Email</label>
+            <input type="email" id="email_id" name="email_id" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <button type="submit">Signup</button>
+        </form>
+        <a class="login-link" href="{{ url_for('login') }}">Already have an account? Login here.</a>
+    </div>
+</body>
+</html>

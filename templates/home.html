@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainwise</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        /* overflow-y: scroll; */
+        height: 100vh; 
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+    .navbar {
+        background-color: #333;
+        overflow: hidden;
+    }
+    .navbar a {
+        float: right;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .navbar a.active {
+        background-color: #666;
+    }
+    .navbar .logo {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-family: cursive;
+        font-size: 30px;
+        background: linear-gradient(to right, #f32170, #ff6b08);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .navbarright{
+        margin-top: 15px;
+        
+    }
+    .bgimage {
+        padding-left: 30px;
+      
+        /* overflow-y: scroll; */
+    }
+    div.scroll-container {
+      background-color: #333;
+      overflow: auto;
+       white-space: nowrap;
+       padding: 8px 8px 8px 8px;
+       
+    }
+    .scroll-container img{
+        padding-right: 15px;
+    }
+    h1{
+        position:absolute;
+        top: 20%;
+        left: 57%;
+        font-size:65px;
+        font-family: verdea;
+        /* transform: translate(-20%, -57%); */
+    }
+    .second{
+        position: absolute;
+        top: 33%;
+        left: 73%;
+        /* font-size:65px; */
+        font-family: verdea;
+        font-size: 35px;
+        color: #f16508;
+        
+    }
+    
+    
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/about" class="logo">trainwise</a>
+    <div class="navbarright">
+        <a href="index.html" class="active">Home</a>
+        <a href="#">About Us</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    </div>
+</div>
+<h1>Just make it happen</h1>
+<h1 class="second">your only limit is you</h1>
+
+<div style="padding: 20px;">
+    <div class="bgimage">
+        <img src="static/bg_image.jpg" alt="bg image" width="1410" height="650">
+        
+    </div>
+</div>
+<div class="scroll-container">
+    
+    <a href="lunges.html">
+       <img src="static/lounges_exerc.jpg" alt="lounges exercise" height="300" width="300"> 
+    </a>
+    <a href="biceps.html">
+        <img src="static/biceps_exerc.jpg" alt="biceps exercise" height="300" width="300">
+    </a>
+    <a href="shoulder.html">
+       <img src="static/shoulder_exerc.jpg" alt="shoulder exercise" height="300" width="300">
+    </a>
+    <a href="crunches.html">
+       <img src="static/crunches.jpg" alt="pushup exercise" height="300" width="300">
+    </a>
+    <img src="static/pushup_exe.jpg" alt="pushup exercise" height="300" width="300">
+  </div>
+
+</body>
+</html>

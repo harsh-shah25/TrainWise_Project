@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainwise - Lunges Exercise</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f0f0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .navbar a.active {
+        background-color: #666;
+    }
+
+    .navbar .logo {
+        font-family: cursive;
+        font-size: 30px;
+        background: linear-gradient(to right, #f32170, #ff6b08);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .navbarright {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-greeting {
+        color: white;
+        margin-right: 20px;
+        font-size: 16px;
+    }
+
+    .content {
+        margin-top: 80px;
+        text-align: center;
+        padding: 20px;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #22119f;
+        text-shadow: 2px 2px 2px rgba(100, 88, 185, 0.7);
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        font-size: 1.2em;
+        color: #555;
+        margin: 40px 0;
+        text-align: left;
+    }
+
+    h4 ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    h4 li {
+        margin: 10px 0;
+    }
+
+    .button {
+        background-color: #b079b2;
+        padding: 10px 32px;
+        font-size: 1em;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .button:hover {
+        background-color: #8478e4;
+    }
+
+    .exercise-image {
+        margin: 40px 0;
+        width: 100%;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 20px;
+        background-color: #333;
+        margin: 20px 0;
+        border-radius: 10px;
+    }
+
+    .scroll-container img {
+        height: 300px;
+        width: 300px;
+        margin-right: 15px;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .scroll-container img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/about" class="logo">trainwise</a>
+    <div class="navbarright">
+        <a href="/" class="active">Home</a>
+        <a href="/about">About Us</a>
+        {% if session['email_id'] %}
+        <span class="user-greeting">Hello, {{ session['email_id'] }}!</span>
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('signup') }}">Signup</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="content">
+    <img src="static/lounges_exerc.jpg" alt="Lunges Exercise" class="exercise-image">
+    <h1>LUNGES</h1>
+    <h4>Exercise: Lunges
+        <ul>
+          <li>Target Muscles: Quadriceps, Hamstrings, Glutes</li>
+          <li>Description: Step forward or backward, bending knees to lower body.</li>
+          <li>Benefits: Improves lower body strength and flexibility.</li>
+          <a href="https://youtu.be/wrwwXE_x-pQ?si=i3FcUPNrRHQ28ZC_" target="_blank">Lunges Tutorial</a>
+        </ul>
+    </h4>
+    <button type="button" class="button" id="button">Start</button>
+</div>
+
+<div class="scroll-container">
+    <a href="lunges">
+        <img src="static/lounges_exerc.jpg" alt="Lunges Exercise">
+    </a>
+    <a href="biceps">
+        <img src="static/biceps_exerc.jpg" alt="Biceps Exercise">
+    </a>
+    <a href="shoulder">
+        <img src="static/shoulder_exerc.jpg" alt="Shoulder Exercise">
+    </a>
+    <a href="crunches">
+        <img src="static/crunches.jpg" alt="Crunches Exercise">
+    </a>
+    
+</div>
+
+<script>
+    function activate() {
+        fetch('/start-exercise/lunges') // Send a GET request to the backend route
+            .then(response => response.text())
+            .then(data => console.log(data)) // Log the response from the server
+            .catch(error => console.error('Error:', error));
+    }
+
+    document.getElementById('button').addEventListener('click', activate);
+</script>
+
+</body>
+</html>
